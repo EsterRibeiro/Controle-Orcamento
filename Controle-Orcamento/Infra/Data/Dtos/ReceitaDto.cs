@@ -2,15 +2,11 @@
 
 namespace Controle_Orcamento.Domain.Model
 {
-    public class Receita: Base
+    public class ReceitaDto
     {
-        public Receita(int id,string descricao, decimal valor, DateTime data)
-            :base(id)
-        {
-            Descricao = descricao;
-            Valor = valor;
-            Data = data;
-        }
+        [Key]
+        [Required]
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "O campo descricao é obrigatório"),
             MaxLength(100)]
