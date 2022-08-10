@@ -40,25 +40,22 @@ namespace Controle_Orcamento.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ReceitaDto receitaAtt)
+        public async Task<IActionResult> Update(int id, [FromBody] Receita receitaAtt)
         {
+
             var receita = _cOContext.Receitas.FirstOrDefault(x => x.Id == id);
 
-            //if (receitaAtt is not null) && ExisteReceita(receitaAtt))
-            //    return BadRequest("Já existe um cadastro dessa receita no sistema."); //pode atualizar o valor ex. deve validar isso
+            if (receita == null)
+               return NotFound();
 
 
+            receita.Valor = receitaAtt.Valor;
+            receita.Descricao = receitaAtt.Descricao;
+            receita.Data = receitaAtt.Data;
 
-            if (receita is null)
-                return NotFound();
+            _cOContext.SaveChanges();
 
-            receita = receitaAtt;
-
-            _cOContext.Update(receita);
-            await _cOContext.SaveChangesAsync();
-
-            return Ok(receita);
-            //return NoContent();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
