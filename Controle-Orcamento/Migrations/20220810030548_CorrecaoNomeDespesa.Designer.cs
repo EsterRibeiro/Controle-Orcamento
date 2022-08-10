@@ -4,6 +4,7 @@ using Controle_Orcamento.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Controle_Orcamento.Migrations
 {
     [DbContext(typeof(ControleOrcamentoContext))]
-    partial class ControleOrcamentoContextModelSnapshot : ModelSnapshot
+    [Migration("20220810030548_CorrecaoNomeDespesa")]
+    partial class CorrecaoNomeDespesa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,25 +6,25 @@ namespace Controle_Orcamento.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReceitaController : ControllerBase
+    public class DespesaController : ControllerBase
     {
         private readonly ControleOrcamentoContext _cOContext = new();
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Receita receita)
+        public async Task<IActionResult> Post([FromBody] Despesa despesa)
         {
-            if (ExisteReceita(receita))
+            if (ExisteDespesa(despesa))
                 return BadRequest("Já existe um cadastro dessa receita no sistema.");
 
-            _cOContext.Add(receita);
+            _cOContext.Add(despesa);
             await _cOContext.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = receita.Id }, receita); //mostra onde o recurso foi criado
+            return CreatedAtAction(nameof(GetById), new { id = despesa.Id }, despesa); //mostra onde o recurso foi criado
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_cOContext.Receitas);
+            return Ok(_cOContext.Despesas);
 
         }
 
@@ -40,18 +40,18 @@ namespace Controle_Orcamento.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Receita receitaAtt)
+        public async Task<IActionResult> Update(int id, [FromBody] Despesa despesaAtt)
         {
 
-            var receita = _cOContext.Receitas.FirstOrDefault(x => x.Id == id);
+            var despesa = _cOContext.Despesas.FirstOrDefault(x => x.Id == id);
 
-            if (receita == null)
-               return NotFound();
+            if (despesa == null)
+                return NotFound();
 
 
-            receita.Valor = receitaAtt.Valor;
-            receita.Descricao = receitaAtt.Descricao;
-            receita.Data = receitaAtt.Data;
+            despesa.Valor = despesaAtt.Valor;
+            despesa.Descricao = despesaAtt.Descricao;
+            despesa.Data = despesaAtt.Data;
 
             _cOContext.SaveChanges();
 
@@ -61,21 +61,21 @@ namespace Controle_Orcamento.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var receita = _cOContext.Receitas.FirstOrDefault(x => x.Id == id);
+            var despesa = _cOContext.Despesas.FirstOrDefault(x => x.Id == id);
 
-            if (receita is null)
+            if (despesa is null)
                 return NotFound();
 
-            _cOContext.Remove(receita);
+            _cOContext.Remove(despesa);
             await _cOContext.SaveChangesAsync();
 
             return NoContent();
         }
 
-        public bool ExisteReceita(Receita receita) //todo jogar para validator
+        public bool ExisteDespesa(Despesa despesa) //todo jogar para validator
         {
-            return _cOContext.Receitas.Any(x => x.Descricao == receita.Descricao
-            && x.Data.Month == receita.Data.Month && x.Data.Year == receita.Data.Year);
+            return _cOContext.Despesas.Any(x => x.Descricao == despesa.Descricao
+            && x.Data.Month == despesa.Data.Month && x.Data.Year == despesa.Data.Year);
         }
     }
 }

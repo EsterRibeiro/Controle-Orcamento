@@ -6,8 +6,8 @@ namespace Controle_Orcamento.Infra.Data
 {
     public class ControleOrcamentoContext : DbContext
     {
-        public DbSet<DespesaDto> Categories { get; set; }
-        public DbSet<ReceitaDto> Receitas { get; set; }
+        public DbSet<Despesa> Despesas { get; set; }
+        public DbSet<Receita> Receitas { get; set; }
 
 
 
@@ -19,17 +19,17 @@ namespace Controle_Orcamento.Infra.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            builder.Entity<DespesaDto>().HasKey(x => x.Id);
-            builder.Entity<DespesaDto>().Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Entity<DespesaDto>().Property(x => x.Descricao).HasMaxLength(500);
-            builder.Entity<DespesaDto>().Property(x => x.Data).HasColumnType("Datetime").IsRequired();
-            builder.Entity<DespesaDto>().Property(x => x.Valor).HasColumnType("Decimal(19,5)").HasDefaultValue(0.0);
+            builder.Entity<Despesa>().HasKey(x => x.Id);
+            builder.Entity<Despesa>().Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Entity<Despesa>().Property(x => x.Descricao).HasMaxLength(500);
+            builder.Entity<Despesa>().Property(x => x.Data).HasColumnType("Datetime").IsRequired();
+            builder.Entity<Despesa>().Property(x => x.Valor).HasColumnType("Decimal(19,5)").HasDefaultValue(0.0);
 
-            builder.Entity<ReceitaDto>().HasKey(x => x.Id);
-            builder.Entity<ReceitaDto>().Property(x => x.Id).ValueGeneratedOnAdd(); ;
-            builder.Entity<ReceitaDto>().Property(x => x.Descricao).HasMaxLength(500);
-            builder.Entity<ReceitaDto>().Property(x => x.Data).HasColumnType("Datetime").IsRequired();
-            builder.Entity<ReceitaDto>().Property(x => x.Valor).HasColumnType("Decimal(19,5)").IsRequired();
+            builder.Entity<Receita>().HasKey(x => x.Id);
+            builder.Entity<Receita>().Property(x => x.Id).ValueGeneratedOnAdd(); ;
+            builder.Entity<Receita>().Property(x => x.Descricao).HasMaxLength(500);
+            builder.Entity<Receita>().Property(x => x.Data).HasColumnType("Datetime").IsRequired();
+            builder.Entity<Receita>().Property(x => x.Valor).HasColumnType("Decimal(19,5)").IsRequired();
         }
     }
 }
