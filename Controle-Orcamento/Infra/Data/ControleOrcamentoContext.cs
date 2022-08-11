@@ -9,11 +9,20 @@ namespace Controle_Orcamento.Infra.Data
         public DbSet<Despesa> Despesas { get; set; }
         public DbSet<Receita> Receitas { get; set; }
 
+        private readonly IConfiguration _configuration;
 
+        public ControleOrcamentoContext(
+            DbContextOptions<ControleOrcamentoContext> opt,
+            IConfiguration configuration) 
+            :base(opt)
+        { 
+            _configuration = configuration;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=ControleDeOrcamento;Trusted_Connection=True;");
+            if(!optionsBuilder.IsConfigured)
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("ControleOrcamentoConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

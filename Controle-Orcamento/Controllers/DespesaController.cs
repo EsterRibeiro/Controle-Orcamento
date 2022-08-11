@@ -8,7 +8,12 @@ namespace Controle_Orcamento.Controllers
     [ApiController]
     public class DespesaController : ControllerBase
     {
-        private readonly ControleOrcamentoContext _cOContext = new();
+        private readonly ControleOrcamentoContext _cOContext;
+
+        public DespesaController(ControleOrcamentoContext cOContext)
+        {
+            _cOContext = cOContext;
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Despesa despesa)
@@ -16,17 +21,14 @@ namespace Controle_Orcamento.Controllers
             if (ExisteDespesa(despesa))
                 return BadRequest("Já existe um cadastro dessa receita no sistema.");
 
-            _cOContext.Add(despesa);
+            _cOContext.Despesas.Add(despesa);
             await _cOContext.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = despesa.Id }, despesa); //mostra onde o recurso foi criado
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            return Ok(_cOContext.Despesas);
-
-        }
+        public async Task<IEnumerable<Despesa>> GetAll() =>
+            _cOContext.Despesas;
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -42,12 +44,10 @@ namespace Controle_Orcamento.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Despesa despesaAtt)
         {
-
             var despesa = _cOContext.Despesas.FirstOrDefault(x => x.Id == id);
 
             if (despesa == null)
                 return NotFound();
-
 
             despesa.Valor = despesaAtt.Valor;
             despesa.Descricao = despesaAtt.Descricao;

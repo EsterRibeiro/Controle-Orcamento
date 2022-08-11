@@ -8,7 +8,12 @@ namespace Controle_Orcamento.Controllers
     [ApiController]
     public class ReceitaController : ControllerBase
     {
-        private readonly ControleOrcamentoContext _cOContext = new();
+        private readonly ControleOrcamentoContext _cOContext;
+
+        public ReceitaController(ControleOrcamentoContext cOContext)
+        {
+            _cOContext = cOContext;
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Receita receita)
@@ -22,11 +27,8 @@ namespace Controle_Orcamento.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            return Ok(_cOContext.Receitas);
-
-        }
+        public async Task<IEnumerable<Receita>> GetAll() =>
+         _cOContext.Receitas;
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -48,7 +50,7 @@ namespace Controle_Orcamento.Controllers
             if (receita == null)
                return NotFound();
 
-
+            //todo verificar se valores foram atualizados
             receita.Valor = receitaAtt.Valor;
             receita.Descricao = receitaAtt.Descricao;
             receita.Data = receitaAtt.Data;
