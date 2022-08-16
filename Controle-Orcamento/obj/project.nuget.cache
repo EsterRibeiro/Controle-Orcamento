@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "rcRJgZXraLMoklzlk6ZCT0qDv/OK8PS2iaGn6iwzA7Et+ha2g1BaCEEE9jiAS8s/O75c/HnMtGELKD+01Ud+PA==",
+  "dgSpecHash": "SLOJPN0fat4wBoN/PW4tTv5Bpk+BvG4F7NC93TLoSJZi9XQ/7b7W0qrHe+/IQfbpEU8f1NEBz+Ykkxm9aUuSBQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ester.ribeiro\\Documents\\Estudos\\Alura\\Back-End-Challenge\\Controle-Orcamento\\Controle-Orcamento\\Controle-Orcamento.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ester.ribeiro\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\ester.ribeiro\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\ester.ribeiro\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\ester.ribeiro\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
     "C:\\Users\\ester.ribeiro\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\ester.ribeiro\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ester.ribeiro\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\ester.ribeiro\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\ester.ribeiro\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\ester.ribeiro\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",

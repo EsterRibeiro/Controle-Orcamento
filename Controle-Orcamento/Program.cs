@@ -8,6 +8,7 @@ builder.Services.AddDbContext<ControleOrcamentoContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ControleOrcamentoConnection"));
 });
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());//como ele sabe oque é o appdomain, appcontext??
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

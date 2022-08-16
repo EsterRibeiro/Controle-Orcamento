@@ -11,6 +11,8 @@ namespace Controle_Orcamento.Domain.Model
             Valor = valor;
             Data = data;
         }
+        public Receita()
+        { }
 
         [Required(ErrorMessage = "O campo descricao é obrigatório"),
             MaxLength(100)]

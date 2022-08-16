@@ -1,12 +1,15 @@
-﻿namespace Controle_Orcamento.Domain.Model
+﻿
+namespace Controle_Orcamento.Domain.Model
 {
     public class Base
     {
-        public Base(int id)
+        public Base(int? id)
         {
             Id = id;
         }
 
-        public int Id { get; set; }
+        public Base()
+        { }
+        public int? Id { get; set; }
     }
 }

@@ -1,5 +1,8 @@
-﻿using Controle_Orcamento.Domain.Model;
+﻿using AutoMapper;
+using Controle_Orcamento.Domain.Model;
 using Controle_Orcamento.Infra.Data;
+using Controle_Orcamento.Infra.Data.DTOs.Despesa;
+using Controle_Orcamento.Services.DTOs.Receita;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controle_Orcamento.Controllers
@@ -9,15 +12,21 @@ namespace Controle_Orcamento.Controllers
     public class DespesaController : ControllerBase
     {
         private readonly ControleOrcamentoContext _cOContext;
+        private readonly IMapper _mapper;
 
-        public DespesaController(ControleOrcamentoContext cOContext)
+        public DespesaController(ControleOrcamentoContext cOContext,
+            IMapper mapper)
         {
             _cOContext = cOContext;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Despesa despesa)
+        public async Task<IActionResult> Post([FromBody] CriarDespesaDTO despesaDto)
         {
+            var despesa = _mapper.Map<Despesa>(despesaDto);
+
+
             if (ExisteDespesa(despesa))
                 return BadRequest("Já existe um cadastro dessa receita no sistema.");
 
@@ -33,25 +42,24 @@ namespace Controle_Orcamento.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var receita = _cOContext.Receitas.FirstOrDefault(x => x.Id == id);
+            var despesa = _cOContext.Despesas.FirstOrDefault(x => x.Id == id);
 
-            if (receita is not null)
-                return Ok(receita);
-
+            if (despesa is not null)
+                _mapper.Map<LerDespesaDTO>(despesa);
+            
             return NotFound();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Despesa despesaAtt)
+        public async Task<IActionResult> Update(int id, [FromBody] AtualizarDespesaDTO despesaDto)
         {
-            var despesa = _cOContext.Despesas.FirstOrDefault(x => x.Id == id);
+            var desp = _cOContext.Despesas.FirstOrDefault(x => x.Id == id);
 
-            if (despesa == null)
+            if (desp == null)
                 return NotFound();
 
-            despesa.Valor = despesaAtt.Valor;
-            despesa.Descricao = despesaAtt.Descricao;
-            despesa.Data = despesaAtt.Data;
+
+            _mapper.Map(despesaDto, desp);
 
             _cOContext.SaveChanges();
 

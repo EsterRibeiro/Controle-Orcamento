@@ -82,3 +82,5 @@ C:\Users\ester.ribeiro\Documents\Estudos\Alura\Back-End-Challenge\Controle-Orcam
 C:\Users\ester.ribeiro\Documents\Estudos\Alura\Back-End-Challenge\Controle-Orcamento\Controle-Orcamento\obj\Debug\net6.0\Controle-Orcamento.genruntimeconfig.cache
 C:\Users\ester.ribeiro\Documents\Estudos\Alura\Back-End-Challenge\Controle-Orcamento\Controle-Orcamento\obj\Debug\net6.0\ref\Controle-Orcamento.dll
 C:\Users\ester.ribeiro\Documents\Estudos\Alura\Back-End-Challenge\Controle-Orcamento\Controle-Orcamento\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\ester.ribeiro\Documents\Estudos\Alura\Back-End-Challenge\Controle-Orcamento\Controle-Orcamento\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\ester.ribeiro\Documents\Estudos\Alura\Back-End-Challenge\Controle-Orcamento\Controle-Orcamento\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
